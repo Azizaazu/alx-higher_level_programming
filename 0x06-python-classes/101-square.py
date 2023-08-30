@@ -1,21 +1,26 @@
 #!/usr/bin/python3
-
+"""Module class Square."""
 class Square:
-
+    """Represent a square."""
     def __str__(self):
-
+        """Define the print() representation of a Square."""
 
         return self.my_sprint()[:-1]
 
     def __init__(self, size=0, position=(0, 0)):
+        """Initialize a new square.
 
+        Args:
+            size (int): size of the new square.
+            position (int, int): The position of the new square.
+        """
 
         self.size = size
         self.position = position
 
     @property
     def size(self):
-
+        """Get/set the current size of the square."""
 
         return self.__size
 
@@ -29,7 +34,7 @@ class Square:
 
     @property
     def position(self):
-
+        """Get/set the current position of the square."""
 
         return self.__position
 
@@ -41,10 +46,12 @@ class Square:
         self.__position = value
 
     def area(self):
+        """Return the current area of the square."""
 
         return self.__size ** 2
 
     def my_sprint(self):
+        """Print the square with the # character."""
 
         res = ""
         if not self.size:

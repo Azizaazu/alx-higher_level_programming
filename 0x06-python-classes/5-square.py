@@ -1,52 +1,47 @@
 #!/usr/bin/python3
+"""Square module."""
+
 
 class Square:
-
+    """Represents a square."""
 
     def __init__(self, size=0):
+        """Initialize new square.
 
-
-        try:
-            self.__size = size
-            if size < 0:
-                raise ValueError
-            if type(size) is not int:
-                raise TypeError
-        except TypeError:
-            raise TypeError("size must be an integer")
-        except ValueError:
-            raise ValueError("size must be >= 0")
+        Args:
+            size: Size of the square.
+        """
+        self.size = size
 
     @property
     def size(self):
+        """Property of size of this square.
 
+        Raises:
+            TypeError: If size is not an integer.
+            ValueError: If size is less than 0.
+        """
         return self.__size
 
     @size.setter
     def size(self, value):
-
-        try:
-            self.__size = value
-            if value < 0:
-                raise ValueError
-            if type(value) is not int:
-                raise TypeError
-        except TypeError:
-            raise TypeError("size must be an integer")
-        except ValueError:
-            raise ValueError("size must be >= 0")
+        if not isinstance(value, int):
+            raise TypeError('size must be an integer')
+        if value < 0:
+            raise ValueError('size must be >= 0')
+        self.__size = value
 
     def area(self):
+        """Area of a square.
 
-        return self.__size * self.__size
+        Returns:
+            The size squared.
+        """
+        return self.__size ** 2
 
     def my_print(self):
-
-        s = self.__size
-        if s == 0:
-            print()
-        else:
-            for i in range(s):
-                for j in range(s):
-                    print("#", end='')
-                print()
+        """Prints this square."""
+        for i in range(self.size):
+            for j in range(self.size):
+                print("#", end="\n" if j is self.size - 1 and i != j else "")
+        print()
