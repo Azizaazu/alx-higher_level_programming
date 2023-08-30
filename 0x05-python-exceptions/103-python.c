@@ -1,9 +1,19 @@
 #include <stdio.h>
+#include <python.h>
 
 void print_python_bytes(PyObject *p);
 void print_python_float(PyObject *p);
 void print_python_list(PyObject *p);
 
+import sys
+
+def safe_function(fct, *args):
+    try:
+        result = fct(*args)
+        return result
+    except Exception as e:
+        sys.stderr.write(f"Exception: {e}\n")
+        return None
 
 /**
  * print_python_bytes - print some basic info about Python bytes objects
