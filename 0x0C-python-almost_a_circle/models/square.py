@@ -1,15 +1,17 @@
 #!/usr/bin/python3
 """Defines a square class."""
+
 from models.rectangle import Rectangle
+
 
 class Square(Rectangle):
     """Represent a square."""
+
     def __init__(self, size, x=0, y=0, id=None):
-        """Initialize a new Square."""
+        """Initialize a new Square.
+        """
         super().__init__(size, size, x, y, id)
 
-    def __str__(self):
-        return f"[Square] ({self.id}) {self.x}/{self.y} - {self.width}"
     @property
     def size(self):
         """Get/set the size of the Square."""
@@ -20,28 +22,7 @@ class Square(Rectangle):
         self.width = value
         self.height = value
 
-    def __str__(self):
-        return f"[Square] ({self.id}) {self.x}/{self.y} - {self.width}"
     def update(self, *args, **kwargs):
-        """Update the Square.
-        """
-        if args:
-            arg_names = ["id", "size", "x", "y"]
-            for i, arg in enumerate(args):
-                setattr(self, arg_names[i], arg)
-        else:
-            for key, value in kwargs.items():
-                setattr(self, key, value)
-    def to_dictionary(self):
-        """Return the dictionary rep Square."""
-        return {
-            "id": self.id,
-            "width": self.width,
-            "height": self.height,
-            "x": self.x,
-            "y": self.y
-        }
-     def update(self, *args, **kwargs):
         """Update the Square.
         """
         if args and len(args) != 0:
@@ -73,3 +54,17 @@ class Square(Rectangle):
                     self.x = v
                 elif k == "y":
                     self.y = v
+
+    def to_dictionary(self):
+        """Return the dictionary representation of the Square."""
+        return {
+            "id": self.id,
+            "size": self.width,
+            "x": self.x,
+            "y": self.y
+        }
+
+    def __str__(self):
+        """Return the print() and str() representation of a Square."""
+        return "[Square] ({}) {}/{} - {}".format(self.id, self.x, self.y,
+                                                 self.width)
